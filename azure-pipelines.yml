@@ -1,0 +1,46 @@
+trigger: none  # no automatic trigger on code push
+
+pool:
+  name: Default
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+steps:
+  - checkout: self
+    clean: true
+    fetchDepth: 0
+    persistCredentials: true
+
+  - task: Maven@4
+    inputs:
+      mavenPomFile: 'pom.xml'
+      goals: 'clean verify'
+      options: '-Dheadless=true'
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: |
+        target/cucumber-api.xml
+        target/cucumber-ui.xml
+      testRunTitle: 'Cucumber BDD Results'
+      failTaskOnFailedTests: true
+    condition: succeededOrFailed()
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: 'target'
+      artifact: 'CucumberHtmlReports'
+      publishLocation: 'pipeline'
+    condition: succeededOrFailed()
+
+  - script: mvn allure:report
+    displayName: 'Generate Allure Report'
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: 'target/site/allure-maven-plugin'
+      artifact: 'AllureReport'
+      publishLocation: 'pipeline'
+    condition: succeededOrFailed()
