@@ -10,9 +10,7 @@ import io.cucumber.junit.CucumberOptions;
         features = "src/test/resources/features/web",
         glue = {"stepdefinitions", "hooks", "web"},
         plugin = {"pretty",
-                "html:target/cucumber-ui.html",
-                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
-                "junit:target/cucumber-ui.xml"
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         },
 
         monochrome = true,

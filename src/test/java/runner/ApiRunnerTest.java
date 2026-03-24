@@ -9,9 +9,7 @@ import io.cucumber.junit.CucumberOptions;
         features = "src/test/resources/features/api",
         glue = {"stepdefinitions.api", "context"},
         plugin = {"pretty",
-                "html:target/cucumber-api.html",
-                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
-                "junit:target/cucumber-api.xml"
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         },
         monochrome = true,
         tags = "@POSTUser"
