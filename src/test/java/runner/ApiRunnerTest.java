@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/features/api",
-        glue = {"stepdefinitions.api", "context"}, // <- must include context for DI
+        glue = {"stepdefinitions.api", "context"},
         plugin = {"pretty",
                 "html:target/cucumber-api.html",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
