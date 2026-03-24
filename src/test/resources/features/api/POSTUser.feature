@@ -5,9 +5,7 @@ Feature: User calls POST User
     Given User calls POST User with values:
       | name  | <name>  |
       | email | <email> |
-
-#    Then Expected status code 200
-#    Then User calls GET items by id
+    Then Validate POST User response
     Examples:
       | Scenario     | name | email          |
       | valid values | test | test@gmail.com |

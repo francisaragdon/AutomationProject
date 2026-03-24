@@ -1,9 +1,6 @@
 package api.model.users;
 
-public class POSTUserDto {
-
-    private int id;
-
+public class POSTUserRequest {
     private String name;
 
     private String email;
@@ -22,13 +19,5 @@ public class POSTUserDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
